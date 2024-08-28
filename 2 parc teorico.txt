@@ -1,0 +1,93 @@
+PUNTERO
+Un puntero es una variable destinada a guardar una dirección de memoria
+el *puntero guarda= la &DireccDeMemoria
+
+Operadores básicos
+Existen dos operadores básicos del lenguaje que se utilizan frecuentemente con punteros:
+
+• * (Operador de indirección): Se define como “el contenido de lo apuntado por …”. No confundir el operador con el utilizado para la declaración del puntero.
+* El contenido de la habitación que APUNTA // el contenido de lo apuntado por puntero*
+
+
+• & (Operador de dirección): Se define como “la dirección de memoria de …” 
+& dirección de memoria 
+
+*puntero = variable  --->  ES EQUIVALENTE
+podemos modificar 'variable' por medio del puntero
+
+
+Aplicaciones de los punteros
+
+• Acceder directamente a la memoria
+• Pasaje de argumentos a funciones “por referencia”
+• Utilización de memoria dinámica
+• Optimización de algoritmos
+
+CON FUNCIONES: 
+cambiar_valor(&a);  //Llamada de la función
+
+En la llamada a la func paso una dirección de memoria (paso por referencia)
+
+
+-------------------
+
+
+ORDENAMIENTO
+
+Ordenamiento de Intercambio o Burbuja
+En cada pasada se comparan pares de elementos. Si están ordenados se dejan como están sino se intercambian de lugar.
+
+void ordenarBurbuja(int tam, int v[MAX]) {
+int i=0, j=0, aux=0;
+for(i=0;i<tam-1;i++){ //numero de comparaciones
+	for (j=0 ; j<tam-1; j++) { //compara los elementos adyacentes y los intercambia
+if(v[j] > v[j+1]) {
+aux = v[j];
+v[j] = v[j+1];
+v[j+1] = aux;
+}
+
+
+
+Ordenamiento por Selección
+En cada pasada se busca el menor valor de la lista, luego se intercambia con el elemento ubicado en la primera posición de la lista.
+
+void ordenarSeleccion(int tam, int v[MAX]) {
+int i=0, aux=0, pos_men=0;
+for(i=0;i<tam;i++){
+	pos_men = menor(tam, v, i);	//llamada de func. menor
+	aux = v[i];
+	v[i] = v[pos_men];	
+	v[pos_men] = aux;
+	}
+
+
+void menor(int tam, int v[MAX], int i) {
+int j=0, menor=0, posicion=0;
+for(j=i;j<tam;j++){ 	//busca el menor valor desde i
+	if(j==i) { 	//por defecto el 1er valor es el menor
+	menor=v[j];
+	posicion=j;
+} else {
+if(v[j]<menor) { 	//compara si es menor
+menor=v[j];
+posicion=j;
+}
+return posicion;
+}
+
+
+Ordenamiento por Inserción
+Consiste en insertar un elemento del arreglo en la parte izquierda del mismo que ya se encuentra ordenado, y desplazar todos los elementos mayores hacia la derecha. Este proceso se repite desde el segundo hasta el último elemento-
+
+void ordenarInsercion(int tam, int v[MAX]) {
+int i=0, j=0, aux=0;
+for (i=1; i<tam; i++) {
+	aux=v[i]; 		//guardo el elemento i en aux
+	j=i-1; 			//utilizo una 2da variable para comparar
+while ((v[j]>aux)&&(j>=0)) { 	//comparo el valor
+			//de la posicion j con aux
+v[j+1] = v[j]; 			//realiza intercambio
+j--; 				// corre todos los valores mayores a derecha.
+v[j+1] = aux;
+}
